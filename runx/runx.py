@@ -77,7 +77,10 @@ def expand_hparams(hparams):
             if val is True:
                 cmd += '--{} '.format(field)
         elif val != 'None':
-            cmd += '--{} {} '.format(field, val)
+            param = '{}'.format(val)
+            if param.find(' ') > -1:
+                param = '"{}"'.format(param)
+            cmd += '--{} {} '.format(field, param)
     return cmd
 
 
